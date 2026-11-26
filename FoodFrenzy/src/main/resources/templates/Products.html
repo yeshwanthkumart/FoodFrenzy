@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieMe | Menu</title>
+    <link rel="stylesheet" th:href="@{/css/Navigation.css}">
+    <link rel="stylesheet" th:href="@{/css/Products.css}">
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+    <main class="menu-page">
+        <header class="menu-intro">
+            <p class="eyebrow">The FoodieMe menu</p>
+            <h1>Your next <span>favourite</span> is here.</h1>
+            <p>70 fresh favourites, from quick bites to satisfying meals.</p>
+        </header>
+
+        <div class="menu-filters" aria-label="Filter menu items">
+            <button class="is-active" type="button" data-filter="all">All dishes</button>
+            <button type="button" data-filter="starters">Starters</button>
+            <button type="button" data-filter="main-course">Indian mains</button>
+            <button type="button" data-filter="biryani-rice">Biryani &amp; rice</button>
+            <button type="button" data-filter="pizza-burgers">Pizza &amp; burgers</button>
+            <button type="button" data-filter="south-indian">South Indian</button>
+            <button type="button" data-filter="beverages">Beverages</button>
+            <button type="button" data-filter="desserts">Desserts</button>
+        </div>
+
+        <section class="menu-section" th:each="section : ${menuSections}" th:data-category="${section.slug}">
+            <div class="section-heading">
+                <p>FoodieMe favourites</p>
+                <h2 th:text="${section.title}">Starters</h2>
+            </div>
+            <div class="menu-grid">
+                <article class="menu-card" th:each="item, itemStatus : ${section.items}">
+                    <span class="item-number" th:text="${itemStatus.count}">1</span>
+                    <div class="menu-card-copy">
+                        <h3 th:text="${item.name}">Veg Spring Rolls</h3>
+                        <p th:text="${section.title}">Starters</p>
+                    </div>
+                    <div class="menu-card-action">
+                        <strong th:text="${'₹' + item.price}">₹120</strong>
+                        <a href="/login">Order</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <script th:src="@{/JavaScript/Products.js}"></script>
+</body>
+</html>
+

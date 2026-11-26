@@ -1,0 +1,74 @@
+:root {
+    --red: #e4002b;
+    --ink: #1d1d1f;
+    --cream: #fffaf5;
+}
+
+body {
+    margin: 0;
+    background: var(--ink);
+    color: white;
+    font-family: Inter, Arial, sans-serif;
+}
+
+.hero {
+    min-height: calc(100vh - 76px);
+    display: grid;
+    align-items: center;
+    padding: 48px clamp(24px, 12vw, 180px);
+    background-image: linear-gradient(90deg, rgba(11, 11, 12, .35), rgba(11, 11, 12, .04)), url('/Images/foodieme-hero.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-copy { max-width: 630px; }
+
+.eyebrow {
+    margin: 0 0 16px;
+    color: #ffb5c2;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.hero h1 {
+    margin: 0;
+    font-size: clamp(3.2rem, 7vw, 6.5rem);
+    line-height: .92;
+    letter-spacing: -.065em;
+}
+
+.hero h1 span { color: var(--red); }
+
+.hero-description {
+    max-width: 520px;
+    margin: 28px 0 34px;
+    color: #f1eeee;
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.65;
+}
+
+.hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+
+.primary-button, .secondary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 24px;
+    border-radius: 999px;
+    font-size: .95rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.primary-button { background: var(--red); color: white; }
+.secondary-button { border: 1px solid rgba(255, 255, 255, .55); color: white; }
+.primary-button:hover { background: #bf0024; }
+.secondary-button:hover { background: white; color: var(--ink); }
+
+@media (max-width: 700px) {
+    .hero { min-height: calc(100vh - 68px); padding: 40px 26px; background-position: 57% center; }
+    .hero h1 { font-size: clamp(3.1rem, 15vw, 4.5rem); }
+}

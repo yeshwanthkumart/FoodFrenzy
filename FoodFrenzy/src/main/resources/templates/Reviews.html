@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodieMe | Reviews</title>
+    <link rel="stylesheet" th:href="@{/css/Navigation.css}">
+    <link rel="stylesheet" th:href="@{/css/Reviews.css}">
+</head>
+<body>
+    <nav th:replace="~{Navigation::navbar()}"></nav>
+
+    <main class="reviews-page">
+        <header class="reviews-heading">
+            <p class="eyebrow">The FoodieMe table</p>
+            <h1>Tell us how it <span>tasted.</span></h1>
+            <p>Share your experience and help the next FoodieMe guest find their new favourite.</p>
+        </header>
+
+        <section class="review-layout" aria-label="FoodieMe reviews">
+            <form class="review-form" th:action="@{/reviews}" th:object="${review}" method="post">
+                <h2>Leave a review</h2>
+                <p class="form-note">We’d love to hear from you.</p>
+
+                <label for="reviewerName">Your name</label>
+                <input id="reviewerName" th:field="*{reviewerName}" maxlength="60" required autocomplete="name">
+                <small th:if="${#fields.hasErrors('reviewerName')}" th:errors="*{reviewerName}"></small>
+
+                <label for="rating">Rating out of 10</label>
+                <input id="rating" th:field="*{rating}" type="number" min="1" max="10" required placeholder="10">
+                <small th:if="${#fields.hasErrors('rating')}" th:errors="*{rating}"></small>
+
+                <label for="comment">Your comment</label>
+                <textarea id="comment" th:field="*{comment}" maxlength="600" required placeholder="What did you enjoy?"></textarea>
+                <small th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}"></small>
+
+                <button type="submit">Post my review</button>
+                <p class="success-message" th:if="${param.submitted}">Thanks—your review is now live.</p>
+            </form>
+
+            <section class="review-list" aria-label="Guest reviews">
+                <div class="review-card" th:each="guestReview : ${reviews}">
+                    <div class="review-card-header">
+                        <strong th:text="${guestReview.reviewerName}">Guest</strong>
+                        <span><span aria-hidden="true">★</span> <span th:text="${guestReview.rating + ' / 10'}">10 / 10</span></span>
+                    </div>
+                    <p th:text="${guestReview.comment}">A delicious FoodieMe meal.</p>
+                </div>
+                <p class="empty-state" th:if="${#lists.isEmpty(reviews)}">Be the first to share a FoodieMe moment.</p>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

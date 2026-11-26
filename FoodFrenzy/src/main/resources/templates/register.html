@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Join FoodieMe</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #1d1d1f;
+            margin: 0;
+        }
+
+        .RegistrationContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .registration {
+            background-color: #fff;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+            width: 400px;
+            padding: 20px;
+        }
+
+        .registration h2 {
+            text-align: center;
+            color: #1d1d1f;
+        }
+
+        .registration label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .registration input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .registration button {
+            background-color: #e4002b;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .registration button:hover {
+            background-color: #bf0024;
+        }
+
+        .registration p {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 14px;
+            color: red;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="RegistrationContainer">
+
+    <div class="registration">
+
+        <div class="content">
+
+            <h2>Join Foodie<span style="color:#e4002b;">Me</span></h2>
+
+            <form th:action="@{/register}"
+                  method="post"
+                  th:object="${user}">
+
+                <label for="uemail">Email:</label>
+
+                <input type="email"
+                       id="uemail"
+                       th:field="*{uemail}"
+                       required>
+				<small th:if="${#fields.hasErrors('uemail')}" th:errors="*{uemail}"></small>
+
+
+                <label for="uname">Username:</label>
+
+                <input type="text"
+                       id="uname"
+                       th:field="*{uname}"
+                       required>
+				<small th:if="${#fields.hasErrors('uname')}" th:errors="*{uname}"></small>
+
+
+                <label for="unumber">Phone Number:</label>
+
+                <input type="tel"
+                       id="unumber"
+                       th:field="*{unumber}"
+					   pattern="[0-9]{10}"
+                       required>
+				<small th:if="${#fields.hasErrors('unumber')}" th:errors="*{unumber}"></small>
+
+
+                <label for="upassword">Password:</label>
+
+                <input type="password"
+                       id="upassword"
+                       th:field="*{upassword}"
+					   minlength="4"
+					   maxlength="72"
+                       required>
+				<small th:if="${#fields.hasErrors('upassword')}" th:errors="*{upassword}"></small>
+
+
+                <button type="submit">
+                    Register
+                </button>
+
+            </form>
+
+			<p>Already a member? <a th:href="@{/login}" style="color:#e4002b;">Log in</a></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

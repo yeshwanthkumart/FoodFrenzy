@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>FoodieMe | Fast, Fresh, Feel-Good Food</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+	<link rel="stylesheet" href="" th:href="@{/css/Navigation.css}" />
+	<link rel="stylesheet" href="" th:href="@{css/Home.css}" />
+</head>
+
+<body>
+	<nav th:replace="~{Navigation::navbar()}"></nav>
+	<main class="hero">
+		<section class="hero-copy">
+			<p class="eyebrow">Made for your cravings</p>
+			<h1>Big flavour.<br><span>Zero waiting.</span></h1>
+			<p class="hero-description">Crispy favourites, comforting classics, and a menu made to turn any moment into a FoodieMe moment.</p>
+			<div class="hero-actions">
+				<a class="primary-button" href="/products">Explore the menu</a>
+				<a class="secondary-button" href="/reviews">See the love</a>
+			</div>
+		</section>
+	</main>
+	
+</body>
+
+</html>
